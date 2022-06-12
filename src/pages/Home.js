@@ -11,13 +11,13 @@ const Home = () => {
     return (
         <>
             <Nav/>  
-            <div className=" flex md:flex-row sm: flex-col-reverse">
+            <div className=" flex justify-between md:flex-row sm:flex-col-reverse">
             
-                <div className="px-4 sm:px-0 ">
+                <div className=" justify-between w-4/6 px-4 sm:px-0 ">
                  <AllPosts/>
                 </div>
             
-                <div className=" mr-5 md:mt-0 ">
+                <div className=" w-96 mr-5 md:mt-0 ">
                     <CreatePost/>
                     <Following/>
                 </div> 

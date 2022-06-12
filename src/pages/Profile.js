@@ -41,12 +41,12 @@ function Profile() {
     return (
         <div>
             <Nav/>
-            <div className=" flex ">
+            <div className=" flex md:flex-row sm:flex-col">
                  {/*////////////// user Info ///////////// */}
-            <div>
-                <div className=" px-4 sm:px-0 w-2/3 ">
+            <div className=' md:w-96 sm:w-full '>
+                <div className=" px-4 sm:px-0 h-full ">
 
-                <div className="bg-slate-100 p-3 border-t-4 border-indigo-500  ">
+                <div className="bg-slate-100 p-3 border-t-4 border-indigo-500 h-full ">
                     <div className="image overflow-hidden">
                         <img className=" w-1/3 h-1/3"
                             src={image}
@@ -84,8 +84,8 @@ function Profile() {
             </div> 
 
             {/*////////////// user Posts///////////// */}
-            <div className=" container mr-5 md:mt-5 ">
-                <div className='flex flex-wrap justify-between'>
+            <div className="  mr-5 md:mt-5 ">
+                <div className='flex flex-wrap justify-around'>
                      {posts.map((post,key) => {
                  return (
                     <div >
