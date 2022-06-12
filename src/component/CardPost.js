@@ -12,7 +12,7 @@ function CardPost({post , submitLikes}) {
 
 
   useEffect(()=> {
-    axios.get(`http://localhost:3001/auth/profile`,{
+    axios.get(`https://art-foody.herokuapp.com/auth/profile`,{
       headers:{accessToken:localStorage.getItem("SecretToken")}
   }).then(res => {
       setProfileImg(res.data.image)

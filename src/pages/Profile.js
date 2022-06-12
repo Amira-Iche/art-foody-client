@@ -18,12 +18,12 @@ function Profile() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/auth/userinfo/${userid}`).then(res => {
+        axios.get(`https://art-foody.herokuapp.com/auth/userinfo/${userid}`).then(res => {
             setUsername(res.data.username)
             
         })
 
-        axios.get(`http://localhost:3001/auth/profile`,{
+        axios.get(`https://art-foody.herokuapp.com/auth/profile`,{
             headers:{accessToken:localStorage.getItem("SecretToken")}
         }).then(res => {
             console.log("data",res.data);
@@ -31,7 +31,7 @@ function Profile() {
             setImage(res.data.image)
         })
 
-        axios.get(`http://localhost:3001/posts/byuserId/${userid}`).then(res => {
+        axios.get(`https://art-foody.herokuapp.com/posts/byuserId/${userid}`).then(res => {
             setPosts(res.data)
         })
        
