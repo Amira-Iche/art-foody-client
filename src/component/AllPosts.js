@@ -47,7 +47,7 @@ const AllPosts = () => {
    const navigate = useNavigate();
     
     return (
-      <div className="container my-12  px-4 ">
+      <div className=" my-12  px-4 ">
         <div className="flex justify-around flex-wrap  ">
   
           {/* <!-- Column --> */}

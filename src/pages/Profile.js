@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {AuthContext} from '../helpers/AuthContext'
 import CardPost from '../component/CardPost'
+import profileImg from "../images/profile.png"
 import "../App.css"
 
 function Profile() {
@@ -48,9 +49,12 @@ function Profile() {
 
                 <div className="bg-slate-100 p-3 border-t-4 border-indigo-500 h-full ">
                     <div className="image overflow-hidden">
-                        <img className=" w-1/3 h-1/3"
+                        {image ?  <img className=" w-1/3 h-1/3"
                             src={image}
-                            alt="" />
+                            alt="profile img" />:  <img className=" w-1/3 h-1/3"
+                            src={profileImg}
+                            alt="profile img" />}
+                       
                     </div>
                     <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{username} </h1>
         
@@ -84,7 +88,7 @@ function Profile() {
             </div> 
 
             {/*////////////// user Posts///////////// */}
-            <div className="  mr-5 md:mt-5 ">
+            <div className=" mx-6  mt-5 ">
                 <div className='flex flex-wrap justify-around'>
                      {posts.map((post,key) => {
                  return (
