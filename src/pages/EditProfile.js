@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../component/Nav'
@@ -12,7 +12,21 @@ function EditProfile() {
  const {userid} = useParams()
   const [bio ,setBio] = useState("")
   const [profileImage, setProfileImage] = useState()
+  const [preview, setPreview] = useState()
 
+
+   useEffect(() => {
+    if (!profileImage) {
+      setPreview(undefined)
+      return
+  }
+    const objectUrl = URL.createObjectURL(profileImage)
+    setPreview(objectUrl)
+
+    return () => URL.revokeObjectURL(objectUrl)
+
+    
+    }, [profileImage])
  
   const saveProfileInfo = (e) => {
     e.preventDefault(); 
@@ -74,6 +88,7 @@ function EditProfile() {
                         />
                      
                     </div>
+                    {profileImage && <img src={preview} alt="preview" />}
                   </div>
 
               

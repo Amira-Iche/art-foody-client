@@ -31,7 +31,9 @@ function CardPost({post , submitLikes}) {
                     
                     <a className="flex justify-center" href={`/post/${post.id}`}>
                         
-                        <img alt="Post pic" className="block rounded-lg shadow-lg md:w-7/12 sm:w-10/12 h-4/6  mt-5  " src={post.image}/>
+                        <img alt="Post pic" 
+                        className="block rounded-lg shadow-lg md:w-7/12 sm:w-10/12 h-4/6  mt-5  "
+                         src={post.image}/>
                     </a>
 
                     <header className="flex sm:items-center sm:justify-between leading-tight md:p-4 sm:m-5">

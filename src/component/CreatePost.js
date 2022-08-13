@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import axios from 'axios';
 // import '../styles/createPost.css'
 
@@ -9,10 +9,24 @@ function CreatePost() {
 
     const [title, setTitle] = useState('')
     const [postText, setPostText] = useState('')
-    const [image, setImage] = useState()
+    const [selectedImage, setSelectedImage] = useState()
+    const [preview, setPreview] = useState()
 
-   
+    useEffect(() => {
+      if (!selectedImage) {
+        setPreview(undefined)
+        return
+    }
+      const objectUrl = URL.createObjectURL(selectedImage)
+      setPreview(objectUrl)
 
+      return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedImage])
+    
+
+ 
+    
+    ////// Fetch data from 
 
     const  postSubmit = (e) => {
          e.preventDefault(); 
@@ -21,8 +35,8 @@ function CreatePost() {
         formData.append("title", title)
         formData.append("postText", postText)
 
-        if(image){
-          formData.append("image", image)
+        if(selectedImage){
+          formData.append("image", selectedImage)
           
         }
 
@@ -33,30 +47,16 @@ function CreatePost() {
           })
           .then(res => {
               try {
-                console.log(formData);
+               
               } catch (error) {
                 console.log("can't add post");
               } 
             })
+            
             setTitle("")
             setPostText("")
-            setImage("")
-        //  else {
-        //   axios.post("http://localhost:3001/posts", post, {
-        //     headers: {
-        //        accessToken:localStorage.getItem("SecretToken")
-        //       } 
-        //     })
-        //     .then(res => {
-        //       try {
-        //         console.log(post);
-        //       } catch (error) {
-        //         console.log("can't add post");
-        //       }
-        //     })
-        // }
-
-       
+            setSelectedImage("")
+      
     }
 
 
@@ -104,11 +104,13 @@ function CreatePost() {
                         className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                       >
                         <span>Upload an Image</span>
-                        <input id="file-upload" onChange={(e) => { setImage(e.target.files[0])}}  name='image' type="file" className="sr-only" />
+                        <input id="file-upload" onChange={(e) => { setSelectedImage(e.target.files[0])}}  name='image' type="file" className="sr-only" />
                       </label>
                      </div>
                   </div>
                 </div>
+                {selectedImage && <img src={preview} alt="preview" />}
+
               </div>
             </div>
             <div className="px-4 py-3 bg-slate-100 text-right sm:px-6">
@@ -124,21 +126,6 @@ function CreatePost() {
       </div>
     
  
-
-
-
-
-      //   <div className="formulaire-post">
-      //   <form id="form" onSubmit={postSubmit} method='POST' encType='multipart/form-data'>
-      //     <input autoFocus className="sous-form input-title" placeholder="Your Title..." required onChange={(e) => { setTitle(e.target.value)}}id="espace-title"type="text"value={title}/>
-           
-      //     <textarea className="sous-form textarea" placeholder="Whats New ?" required onChange={(e) => {setPostText(e.target.value)}}type="text"value={postText}/>
-      //     <input  className="sous-form input-title" onChange={(e) => { setImage(e.target.files[0])}}id="espace-title" type="file" name='image' />
-      //     <div className="div-button-publier">
-      //     <button>Publier </button>
-      //     </div>
-      //   </form>
-      // </div>
     )
 }
 

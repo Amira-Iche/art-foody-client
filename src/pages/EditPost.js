@@ -11,6 +11,31 @@ function EditPost() {
     const [title, setTitle] = useState("")
     const [postText, setPostText] = useState("")
     const [image, setImage] = useState()
+    const [preview, setPreview] = useState()
+
+
+    // useEffect(() => {
+    //   let fileReader, isCancel = false;
+    //   if (image) {
+    //     fileReader = new FileReader();
+    //     fileReader.onload = (e) => {
+    //       const { result } = e.target;
+    //       if (result && !isCancel) {
+    //         setPreview(result)
+    //       }
+    //     }
+    //     fileReader.readAsDataURL(image);
+    //   }
+    //   return () => {
+    //     isCancel = true;
+    //     if (fileReader && fileReader.readyState === 1) {
+    //       fileReader.abort();
+    //     }
+    //   }
+
+    
+    // }, [image])
+    
    
 
     useEffect(() => {
@@ -89,6 +114,8 @@ function EditPost() {
                      </div>
                   </div>
                 </div>
+                {image && <img src={preview} alt="img preview" />}
+                
               </div>
             </div>
             <div className="px-4 py-3 bg-slate-100 text-right sm:px-6">
